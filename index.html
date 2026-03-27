@@ -60,18 +60,82 @@
       <!-- 1) HERO -->
       <section id="hero" class="section hero">
         <div class="container heroInner">
-          <div class="heroCopy reveal">
-            <h1 class="heroTitle">MEREKE’S QYZ UZATU</h1>
-            <p class="heroSub">11.07.2026 г. Алматы</p>
+          <div class="inviteCard inviteCard--hero reveal">
+            <div class="inviteFlorals" aria-hidden="true">
+              <!-- Stylized 3D-ish florals (original SVG, not a copy of reference) -->
+              <svg class="floralDefs" width="0" height="0" style="position:absolute">
+                <defs>
+                  <radialGradient id="petalA" cx="30%" cy="25%" r="75%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="55%" stop-color="#efece6" />
+                    <stop offset="100%" stop-color="#cfc7bb" />
+                  </radialGradient>
+                  <radialGradient id="goldA" cx="30%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#f7e9c6" />
+                    <stop offset="55%" stop-color="#d6b77b" />
+                    <stop offset="100%" stop-color="#b38d48" />
+                  </radialGradient>
+                  <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.35" />
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.25" />
+                  </filter>
+                  <symbol id="floralSymbol" viewBox="0 0 220 220">
+                    <g filter="url(#softShadow)">
+                      <g transform="translate(22 22)">
+                        <g transform="translate(88 88)">
+                          <g>
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(0) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(36) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(72) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(108) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(144) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(180) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(216) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(252) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(288) translate(0 -56)" />
+                            <ellipse rx="26" ry="62" fill="url(#petalA)" transform="rotate(324) translate(0 -56)" />
+                          </g>
+                          <circle r="22" fill="url(#goldA)" />
+                          <circle r="10" fill="#fdf6e7" opacity="0.75" />
+                        </g>
+                      </g>
+                    </g>
+                  </symbol>
+                </defs>
+              </svg>
 
-            <div class="heroActions">
-              <a class="btn btnPrimary" href="#story" data-scroll>Төменге сырғытыңыз</a>
-              <a class="btn btnGhost" href="#event" data-scroll>Бағдарлама</a>
+              <svg class="floral floral--tl" viewBox="0 0 220 220"><use href="#floralSymbol" /></svg>
+              <svg class="floral floral--tr" viewBox="0 0 220 220"><use href="#floralSymbol" /></svg>
+              <svg class="floral floral--bl" viewBox="0 0 220 220"><use href="#floralSymbol" /></svg>
+              <svg class="floral floral--br" viewBox="0 0 220 220"><use href="#floralSymbol" /></svg>
             </div>
 
-            <div class="heroMeta reveal reveal-up">
-              <span class="heroMetaDot" aria-hidden="true"></span>
-              <span class="heroMetaText">Қара түсті дресс-код</span>
+            <div class="inviteInner">
+              <div class="inviteEyebrow">Құрметті қонақтар</div>
+              <h1 class="inviteTitle">MEREKE’S QYZ UZATU</h1>
+              <div class="inviteMeta">
+                <span class="inviteMetaStrong">11</span>
+                <span class="inviteMetaSep" aria-hidden="true">·</span>
+                <span class="inviteMetaStrong">07</span>
+                <span class="inviteMetaSep" aria-hidden="true">·</span>
+                <span class="inviteMetaStrong">2026</span>
+                <span class="inviteMetaSep inviteMetaSep--pipe" aria-hidden="true">|</span>
+                <span class="inviteMetaCity">Алматы</span>
+              </div>
+
+              <p class="inviteLead">
+                Сіздерді Мерекені жаңа өмірге шығарып салу сәтін бірге бөлісуге шақырамыз.
+              </p>
+
+              <div class="heroActions inviteActions">
+                <a class="btn btnPrimary" href="#story" data-scroll>Төменге сырғытыңыз</a>
+                <a class="btn btnGhost" href="#event" data-scroll>Бағдарлама</a>
+              </div>
+
+              <div class="dressNote" role="note">
+                <span class="dressDot" aria-hidden="true"></span>
+                <span class="dressText">Dress code: қара түсті киім (ақ түстен аулақ болыңыз)</span>
+              </div>
             </div>
           </div>
         </div>

@@ -1,17 +1,22 @@
-/* Qyz Uzatu landing page — premium minimal, mobile-first */
+/* Qyz Uzatu — digital invitation (premium card, dark mood, gold accents) */
 
 :root {
-  --bg: #0b0b0d;
-  --panel: rgba(255, 255, 255, 0.06);
-  --panel2: rgba(255, 255, 255, 0.04);
-  --text: #f4efe4;
+  --bg: #0a0a0c;
+  --bg2: #121014;
+  --text: rgba(244, 239, 228, 0.92);
   --muted: rgba(244, 239, 228, 0.72);
-  --muted2: rgba(244, 239, 228, 0.58);
   --gold: #c7a86a;
   --gold2: #e6d2a5;
-  --line: rgba(199, 168, 106, 0.35);
-  --line2: rgba(199, 168, 106, 0.18);
-  --shadow: 0 26px 90px rgba(0, 0, 0, 0.55);
+
+  /* invitation paper */
+  --paper: #dfd7cb; /* warm greige */
+  --paper2: #f0ebe3;
+  --ink: #141214;
+  --inkMuted: rgba(20, 18, 20, 0.72);
+
+  --line: rgba(199, 168, 106, 0.42);
+  --line2: rgba(199, 168, 106, 0.22);
+  --shadow: 0 34px 120px rgba(0, 0, 0, 0.62);
   --r-lg: 24px;
   --r-md: 18px;
   --r-sm: 14px;
@@ -33,9 +38,11 @@ html {
 
 body {
   margin: 0;
-  background: radial-gradient(800px 420px at 20% 0%, rgba(199, 168, 106, 0.18), transparent 55%),
-    radial-gradient(650px 360px at 70% 10%, rgba(230, 210, 165, 0.12), transparent 60%),
-    var(--bg);
+  background:
+    radial-gradient(900px 560px at 18% 0%, rgba(199, 168, 106, 0.12), transparent 58%),
+    radial-gradient(780px 520px at 74% 12%, rgba(230, 210, 165, 0.07), transparent 62%),
+    radial-gradient(1200px 700px at 40% 120%, rgba(255, 255, 255, 0.05), transparent 60%),
+    linear-gradient(180deg, var(--bg2), var(--bg));
   color: var(--text);
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   overflow-x: hidden;
@@ -79,8 +86,8 @@ a {
   width: 120%;
   height: 120%;
   object-fit: cover;
-  opacity: 0.35;
-  filter: saturate(0.95) contrast(1.05) brightness(0.85);
+  opacity: 0.22;
+  filter: saturate(0.92) contrast(1.06) brightness(0.72);
   transform: translate3d(0, calc(var(--scroll-y, 0) * -0.03px), 0) scale(1.04);
   will-change: transform;
 }
@@ -88,7 +95,7 @@ a {
 .bgOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11, 11, 13, 0.66), rgba(11, 11, 13, 0.84));
+  background: linear-gradient(180deg, rgba(10, 10, 12, 0.58), rgba(10, 10, 12, 0.92));
 }
 
 .bgGrain {
@@ -126,7 +133,7 @@ a {
   right: 0;
   z-index: 30;
   padding: 14px 0;
-  background: rgba(11, 11, 13, 0.46);
+  background: rgba(10, 10, 12, 0.46);
   border-bottom: 1px solid rgba(199, 168, 106, 0.14);
   backdrop-filter: blur(10px);
 }
@@ -194,8 +201,8 @@ a {
 /* Hero */
 .hero {
   padding-top: 94px;
-  padding-bottom: 44px;
-  min-height: 82vh;
+  padding-bottom: 64px;
+  min-height: 86vh;
   display: flex;
   align-items: center;
 }
@@ -206,48 +213,169 @@ a {
   min-height: 64vh;
 }
 
-.heroCopy {
+/* Invitation card (Hero) */
+.inviteCard {
+  position: relative;
+  width: 100%;
   max-width: 860px;
+  margin: 0 auto;
+  border-radius: 28px;
+  background:
+    radial-gradient(900px 520px at 20% 0%, rgba(255, 255, 255, 0.58), transparent 55%),
+    linear-gradient(180deg, var(--paper2), var(--paper));
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(199, 168, 106, 0.22);
+  overflow: hidden;
 }
 
-.heroTitle {
+.inviteCard::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(179, 141, 72, 0.35);
+  pointer-events: none;
+}
+
+.inviteCard::after {
+  /* emboss + subtle paper texture */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 40%),
+    radial-gradient(900px 380px at 40% 0%, rgba(199, 168, 106, 0.10), transparent 60%);
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.inviteInner {
+  position: relative;
+  padding: 34px 18px 22px;
+  color: var(--ink);
+  text-align: center;
+}
+
+.inviteEyebrow {
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(20, 18, 20, 0.65);
+}
+
+.inviteTitle {
   font-family: "Playfair Display", serif;
-  font-size: clamp(34px, 6vw, 74px);
-  margin: 0 0 14px;
+  margin: 12px 0 10px;
+  font-size: clamp(34px, 7vw, 66px);
   line-height: 1.02;
   letter-spacing: 0.02em;
 }
 
-.heroSub {
-  margin: 0 0 22px;
-  font-size: clamp(16px, 3.2vw, 22px);
-  color: var(--muted);
-  font-weight: 500;
+.inviteMeta {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(20, 18, 20, 0.72);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  flex-wrap: wrap;
+}
+
+.inviteMetaStrong {
+  font-variant-numeric: tabular-nums;
+}
+
+.inviteMetaSep {
+  color: rgba(179, 141, 72, 0.7);
+}
+
+.inviteMetaSep--pipe {
+  margin: 0 4px;
+}
+
+.inviteMetaCity {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.inviteLead {
+  margin: 18px auto 0;
+  max-width: 44ch;
+  color: rgba(20, 18, 20, 0.78);
+  line-height: 1.7;
+  font-weight: 600;
 }
 
 .heroActions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 18px;
 }
 
-.heroMeta {
-  margin-top: 26px;
-  display: flex;
+.dressNote {
+  margin: 18px auto 0;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: rgba(244, 239, 228, 0.72);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(179, 141, 72, 0.28);
+  background: rgba(255, 255, 255, 0.55);
+  color: rgba(20, 18, 20, 0.8);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.heroMetaDot {
-  width: 9px;
-  height: 9px;
+.dressDot {
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
-  background: rgba(199, 168, 106, 0.95);
-  box-shadow: 0 0 0 6px rgba(199, 168, 106, 0.14);
+  background: #0a0a0c;
+  box-shadow: 0 0 0 5px rgba(10, 10, 12, 0.10);
+}
+
+.inviteFlorals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floral {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  opacity: 0.95;
+  filter: saturate(0.98);
+}
+
+.floral--tl {
+  left: -54px;
+  top: -62px;
+  transform: rotate(-10deg);
+}
+
+.floral--tr {
+  right: -60px;
+  top: -64px;
+  transform: rotate(22deg) scaleX(-1);
+}
+
+.floral--bl {
+  left: -62px;
+  bottom: -70px;
+  transform: rotate(18deg) scaleY(-1);
+}
+
+.floral--br {
+  right: -70px;
+  bottom: -76px;
+  transform: rotate(-18deg) scale(-1);
 }
 
 /* Buttons */
@@ -274,7 +402,7 @@ a {
 .btnPrimary {
   background: linear-gradient(135deg, rgba(199, 168, 106, 1), rgba(230, 210, 165, 0.86));
   color: #0b0b0d;
-  box-shadow: 0 18px 70px rgba(199, 168, 106, 0.22);
+  box-shadow: 0 18px 70px rgba(179, 141, 72, 0.25);
 }
 
 .btnPrimary:hover {
@@ -289,6 +417,21 @@ a {
 
 .btnGhost:hover {
   background: rgba(255, 255, 255, 0.06);
+}
+
+/* Buttons on the paper invitation */
+.inviteCard .btnPrimary {
+  color: #121014;
+}
+
+.inviteCard .btnGhost {
+  background: rgba(20, 18, 20, 0.06);
+  border-color: rgba(179, 141, 72, 0.28);
+  color: rgba(20, 18, 20, 0.88);
+}
+
+.inviteCard .btnGhost:hover {
+  background: rgba(20, 18, 20, 0.08);
 }
 
 /* Reveal animations */
