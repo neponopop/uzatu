@@ -1,7 +1,7 @@
 (() => {
   const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
-  // Smooth scroll for anchor buttons
+  // Smooth scroll for internal anchor links
   document.addEventListener("click", (e) => {
     const a = e.target.closest?.("a[data-scroll]");
     if (!a) return;
@@ -16,7 +16,7 @@
     target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
   });
 
-  // Parallax background
+  // Subtle parallax for background video
   if (!prefersReducedMotion) {
     let latest = 0;
     let ticking = false;
@@ -26,32 +26,31 @@
       document.documentElement.style.setProperty("--scroll-y", String(latest));
     };
 
-    window.addEventListener("scroll", () => {
-      latest = window.scrollY || 0;
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        latest = window.scrollY || 0;
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
 
-    // Initial value
-    latest = window.scrollY || 0;
-    document.documentElement.style.setProperty("--scroll-y", String(latest));
+    update();
   }
 
-  // Reveal + story progress
+  // Reveal observer
   const revealEls = Array.from(document.querySelectorAll(".reveal"));
-  const storyItems = Array.from(document.querySelectorAll(".storyItem"));
+  const typeEls = Array.from(document.querySelectorAll("[data-type]"));
 
-  const typewriterEls = Array.from(document.querySelectorAll(".typewriter[data-type]"));
-
-  // Prepare typewriter spans
   const twStore = new WeakMap();
+
   const prepareTypewriter = (el) => {
     if (twStore.has(el)) return;
-    const raw = el.textContent?.replace(/\s+/g, " ").trimEnd() ?? "";
+    const raw = (el.textContent ?? "").replace(/\s+/g, " ").trim();
 
-    // Replace content with spans per character (supports Kazakh Cyrillic)
     el.textContent = "";
     const frag = document.createDocumentFragment();
     const chars = [];
@@ -81,8 +80,7 @@
     const { chars } = store;
     if (!chars.length) return;
 
-    // Duration scales with text length, capped for premium feel
-    const durationMs = Math.min(4200, Math.max(1400, chars.length * 22));
+    const durationMs = Math.min(4200, Math.max(1300, chars.length * 20));
     const stepMs = durationMs / chars.length;
 
     let start = null;
@@ -94,59 +92,76 @@
       const shouldBe = Math.min(chars.length, Math.floor(elapsed / stepMs) + 1);
 
       while (revealed < shouldBe) {
-        const span = chars[revealed];
-        span.classList.add("is-visible");
+        chars[revealed].classList.add("is-visible");
         revealed++;
       }
 
-      if (revealed < chars.length) {
-        requestAnimationFrame(tick);
-      }
+      if (revealed < chars.length) requestAnimationFrame(tick);
     };
 
     requestAnimationFrame(tick);
   };
 
-  // Prepare all typewriters upfront (fast & deterministic)
-  for (const el of typewriterEls) prepareTypewriter(el);
-
-  const markVisible = (entry) => {
-    if (!entry.isIntersecting) return;
-
-    const target = entry.target;
-    if (target.classList.contains("reveal")) {
-      target.classList.add("is-visible");
-    }
-
-    // Story dot fill state
-    if (target.classList.contains("storyItem")) {
-      target.classList.add("is-visible");
-      const para = target.querySelector(".typewriter[data-type]");
-      if (para) playTypewriter(para);
-    } else {
-      // For non-story reveal elements that might be typewriter
-      const maybe = target.querySelector?.(".typewriter[data-type]");
-      if (maybe) playTypewriter(maybe);
-    }
-  };
-
   if (prefersReducedMotion) {
     for (const el of revealEls) el.classList.add("is-visible");
-    for (const item of storyItems) item.classList.add("is-visible");
-    for (const el of typewriterEls) playTypewriter(el);
+    for (const el of typeEls) {
+      prepareTypewriter(el);
+      playTypewriter(el);
+    }
   } else {
     const io = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) markVisible(entry);
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const target = entry.target;
+          if (target.classList.contains("reveal")) target.classList.add("is-visible");
+          if (target.hasAttribute?.("data-type")) {
+            prepareTypewriter(target);
+            playTypewriter(target);
+          }
+        }
       },
-      { root: null, threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.18, rootMargin: "0px 0px -12% 0px" },
     );
 
     for (const el of revealEls) io.observe(el);
-    for (const item of storyItems) io.observe(item);
+    for (const el of typeEls) io.observe(el);
   }
 
-  // Music toggle
+  // Countdown timer: days | hours | minutes
+  const cdDays = document.getElementById("cdDays");
+  const cdHours = document.getElementById("cdHours");
+  const cdMinutes = document.getElementById("cdMinutes");
+
+  const renderCountdown = (diffMs) => {
+    if (!cdDays || !cdHours || !cdMinutes) return;
+    if (diffMs <= 0) {
+      cdDays.textContent = "0";
+      cdHours.textContent = "0";
+      cdMinutes.textContent = "0";
+      return;
+    }
+
+    const totalMinutes = Math.floor(diffMs / (1000 * 60));
+    const days = Math.floor(totalMinutes / (60 * 24));
+    const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+    const minutes = totalMinutes % 60;
+
+    cdDays.textContent = String(days);
+    cdHours.textContent = String(hours).padStart(2, "0");
+    cdMinutes.textContent = String(minutes).padStart(2, "0");
+  };
+
+  const eventDate = new Date("2026-07-11T18:30:00+06:00"); // Almaty (+06)
+  const tickCountdown = () => {
+    const diff = eventDate.getTime() - Date.now();
+    renderCountdown(diff);
+  };
+
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  // Music toggle (optional)
   const audio = document.getElementById("bgAudio");
   const musicToggle = document.getElementById("musicToggle");
   if (audio && musicToggle) {
@@ -162,12 +177,12 @@
     musicToggle.addEventListener("click", async () => {
       if (isPlaying) {
         audio.pause();
+        audio.currentTime = 0;
         isPlaying = false;
         setBtn(false);
         return;
       }
 
-      // Try play; if the file is missing, user still has graceful UI
       audio.volume = 0.35;
       audio.loop = true;
       try {
@@ -175,54 +190,128 @@
         isPlaying = true;
         setBtn(true);
       } catch {
-        // If autoplay/play is blocked or asset missing:
         isPlaying = false;
         setBtn(false);
-        musicToggle.textContent = "Музыка: жоқ/қолжетімсіз";
+        musicToggle.textContent = "Музыка: unavailable";
         musicToggle.disabled = true;
       }
     });
   }
 
-  // Countdown timer (optional but enabled by default)
-  const countdownEl = document.getElementById("countdown");
-  if (countdownEl) {
-    const eventDate = new Date("2026-07-11T18:30:00+06:00"); // Almaty time (+06)
+  // Video fallback: if video asset missing, hide to avoid noisy errors.
+  const heroVideo = document.getElementById("heroVideo");
+  if (heroVideo) {
+    heroVideo.addEventListener("error", () => {
+      heroVideo.style.display = "none";
+    });
+  }
+  const finalVideo = document.getElementById("finalVideo");
+  if (finalVideo) {
+    finalVideo.addEventListener("error", () => {
+      finalVideo.style.display = "none";
+    });
+  }
 
-    const pad2 = (n) => String(n).padStart(2, "0");
+  // RSVP: Supabase REST API (optional). If not configured -> localStorage fallback.
+  // Configure (anon key only + RLS table) in the block below.
+  const RSVP = {
+    // Supabase:
+    // supabaseUrl: "https://YOUR_PROJECT.supabase.co",
+    // supabaseAnonKey: "YOUR_ANON_KEY",
+    // table: "rsvp",
+    supabaseUrl: "",
+    supabaseAnonKey: "",
+    table: "rsvp",
+  };
 
-    const render = (diffMs) => {
-      if (diffMs <= 0) {
-        countdownEl.textContent = "Басталды";
+  const form = document.getElementById("rsvpForm");
+  const statusEl = document.getElementById("rsvpStatus");
+  if (form && statusEl) {
+    const setStatus = (text) => {
+      statusEl.textContent = text;
+    };
+
+    const sanitizePhone = (v) => (v ?? "").toString().replace(/[^\d+]/g, "").trim();
+
+    const isValidPhone = (v) => {
+      const digits = (v ?? "").toString().replace(/\D/g, "");
+      return digits.length >= 7;
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById("rsvpSubmit");
+      const name = form.elements.namedItem("name")?.value?.trim() ?? "";
+      const phoneRaw = form.elements.namedItem("phone")?.value ?? "";
+      const phone = sanitizePhone(phoneRaw);
+      const attend = form.elements.namedItem("attend")?.value ?? "";
+      const peopleCount = form.elements.namedItem("peopleCount")?.value ?? "";
+
+      if (!name) {
+        setStatus("Атыңызды енгізіңіз.");
         return;
       }
 
-      const totalSeconds = Math.floor(diffMs / 1000);
-      const days = Math.floor(totalSeconds / (3600 * 24));
-      const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
+      if (!isValidPhone(phone)) {
+        setStatus("Телефонды дұрыс енгізіңіз.");
+        return;
+      }
 
-      countdownEl.textContent = `${days} күн  ${pad2(hours)}:${pad2(minutes)}:${pad2(seconds)}`;
-    };
+      if (attend !== "yes" && attend !== "no") {
+        setStatus("Жауапты таңдаңыз (Иә/Жоқ).");
+        return;
+      }
 
-    const tick = () => {
-      const now = new Date();
-      const diff = eventDate.getTime() - now.getTime();
-      render(diff);
-    };
+      const payload = {
+        name,
+        phone,
+        attend, // "yes" | "no"
+        people_count: peopleCount === "" ? null : Number(peopleCount),
+        created_at: new Date().toISOString(),
+      };
 
-    tick();
-    setInterval(tick, 1000);
-  }
+      try {
+        if (submitBtn) submitBtn.disabled = true;
+        setStatus("Жіберілуде...");
 
-  // Video fallback: if hero.mp4 missing, keep gradient-only background
-  const bgVideo = document.getElementById("bgVideo");
-  if (bgVideo) {
-    const hideOnError = () => {
-      bgVideo.style.display = "none";
-    };
-    bgVideo.addEventListener("error", hideOnError);
+        // 1) Supabase insert if configured
+        if (RSVP.supabaseUrl && RSVP.supabaseAnonKey) {
+          const url = `${RSVP.supabaseUrl}/rest/v1/${RSVP.table}`;
+          const res = await fetch(url, {
+            method: "POST",
+            headers: {
+              apikey: RSVP.supabaseAnonKey,
+              Authorization: `Bearer ${RSVP.supabaseAnonKey}`,
+              "Content-Type": "application/json",
+              Prefer: "return=representation",
+            },
+            body: JSON.stringify([payload]),
+          });
+          if (!res.ok) throw new Error(`Supabase error: ${res.status}`);
+        } else {
+          // 2) Local fallback (keeps user flow intact)
+          const key = "uzatu_rsvp_queue";
+          const prev = [];
+          try {
+            const current = localStorage.getItem(key);
+            if (current) prev.push(...JSON.parse(current));
+          } catch {
+            // ignore
+          }
+          prev.push(payload);
+          localStorage.setItem(key, JSON.stringify(prev));
+        }
+
+        setStatus("Рақмет! Сіздің жауабыңыз қабылданды");
+        form.reset();
+      } catch (err) {
+        setStatus("Қате болды. Қайта жіберіп көріңіз.");
+        if (submitBtn) submitBtn.disabled = false;
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
   }
 })();
 

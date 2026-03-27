@@ -3,48 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0b0d" />
     <title>Qyz Uzatu</title>
-    <meta name="description" content="MEREKE’S QYZ UZATU — 11.07.2026, Алматы" />
+    <meta name="description" content="MEREKE’S QYZ UZATU — 11.07.2026 г. Алматы" />
 
-    <!-- Fonts (2 max) -->
+    <!-- 2 fonts max: headings + body -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap&subset=cyrillic"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="./styles.css" />
   </head>
+
   <body>
+    <a class="skipLink" href="#hero">Көшу</a>
+
     <div class="bg" aria-hidden="true">
       <video
-        id="bgVideo"
+        id="heroVideo"
         class="bgVideo"
         autoplay
         muted
         loop
         playsinline
-        preload="auto"
+        preload="metadata"
         src="./assets/hero.mp4"
       ></video>
       <div class="bgOverlay"></div>
-      <div class="bgGlow"></div>
+      <div class="bgGrain"></div>
     </div>
 
     <header class="top">
       <div class="container topInner">
-        <div class="brand">
+        <div class="brand" aria-label="Qyz Uzatu">
           <span class="brandMark" aria-hidden="true"></span>
-          <span class="brandText">QYZ UZATU</span>
+          <div class="brandText">
+            <div class="brandEyebrow">QYZ UZATU</div>
+          </div>
         </div>
 
-        <button id="musicToggle" class="musicToggle" type="button" aria-pressed="false">
-          Музыка: Off
-        </button>
+        <div class="topRight">
+          <a class="topLink" href="#rsvp" data-scroll>RSVP</a>
+          <button id="musicToggle" class="musicToggle" type="button" aria-pressed="false">
+            Музыка: Off
+          </button>
+        </div>
       </div>
     </header>
 
     <audio id="bgAudio" src="./assets/music.mp3" preload="none"></audio>
 
     <main>
+      <!-- 1) HERO -->
       <section id="hero" class="section hero">
         <div class="container heroInner">
           <div class="heroCopy reveal">
@@ -52,98 +65,92 @@
             <p class="heroSub">11.07.2026 г. Алматы</p>
 
             <div class="heroActions">
-              <a class="btn btnPrimary" href="#story" data-scroll>
-                Төменге сырғытыңыз
-              </a>
-              <a class="btn btnGhost" href="#event" data-scroll>
-                Бағдарлама
-              </a>
+              <a class="btn btnPrimary" href="#story" data-scroll>Төменге сырғытыңыз</a>
+              <a class="btn btnGhost" href="#event" data-scroll>Бағдарлама</a>
             </div>
 
-            <div class="scrollHint" aria-hidden="true">
-              <span class="scrollHintLine"></span>
-              <span class="scrollHintText">Scroll</span>
+            <div class="heroMeta reveal-up">
+              <span class="heroMetaDot" aria-hidden="true"></span>
+              <span class="heroMetaText">Қара түсті дресс-код</span>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- 2) STORY -->
       <section id="story" class="section story">
         <div class="container">
-          <div class="storyHead reveal">
+          <div class="sectionHead reveal">
             <div class="kicker">История / өмір жолы</div>
             <div class="ornLine" aria-hidden="true"></div>
           </div>
 
-          <div class="storyStack" aria-label="История жизни (анимация пролистывания)">
-            <article class="storyItem">
-              <div class="storyDot" aria-hidden="true"></div>
-              <p class="para typewriter reveal" data-type>
+          <div class="timeline" aria-label="История жизни">
+            <div class="timelineLine" aria-hidden="true"></div>
+
+            <div class="timelineItem reveal">
+              <div class="timelineDot" aria-hidden="true"></div>
+              <p class="storyPara typewriter" data-type>
                 Сіздер жаңа ғана біздің сүйікті Мерекеміздің өміріндегі 27 жылға көз жүгірттіңіздер.
               </p>
-            </article>
+            </div>
 
-            <article class="storyItem">
-              <div class="storyDot" aria-hidden="true"></div>
-              <p class="para typewriter reveal" data-type>
-                Біреулер қызымыздың осы кезеңдерінің барлығына куә болды, енді біреулер кейінірек танысты, бірақ бәріңіз де Мерекемен бірге осы өмір жолында қатар жүрдіңіздер.
+            <div class="timelineItem reveal">
+              <div class="timelineDot" aria-hidden="true"></div>
+              <p class="storyPara typewriter" data-type>
+                Біреулер қызымыздың осы кезеңдерінің барлығына куә болды, енді біреулер кейінірек танысты, бірақ
+                бәріңіз де Мерекемен бірге осы өмір жолында қатар жүрдіңіздер.
               </p>
-            </article>
+            </div>
 
-            <article class="storyItem">
-              <div class="storyDot" aria-hidden="true"></div>
-              <p class="para typewriter reveal" data-type>
-                Ал қазір сіздер бұл жолдарды Мерекені жаңа өмірге — отбасылық өмірге шығарып салу сәтін бірге бөлісу үшін оқып отырсыздар.
+            <div class="timelineItem reveal">
+              <div class="timelineDot" aria-hidden="true"></div>
+              <p class="storyPara typewriter" data-type>
+                Ал қазір сіздер бұл жолдарды Мерекені жаңа өмірге — отбасылық өмірге шығарып салу сәтін бірге бөлісу үшін
+                оқып отырсыздар.
               </p>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- 3) PARENTS -->
       <section id="parents" class="section parents">
         <div class="container">
-          <div class="parentsWrap reveal">
+          <div class="parentsCard reveal">
             <div class="kicker">Той иелері</div>
-            <h2 class="parentsTitle">
-              Құрметпен және сүйіспеншілікпен, той иелері:
-            </h2>
+            <h2 class="sectionTitle">Құрметпен және сүйіспеншілікпен, той иелері:</h2>
+            <div class="ornament" aria-hidden="true"></div>
 
             <div class="parentsGrid">
               <div class="personCard">
-                <div class="personLine">
-                  <span class="personNameInline">Талғат</span>
-                  <span class="personSep">—</span>
-                  <span class="personDescInline">Мерекенің ең аяулы әкесі</span>
-                </div>
+                <div class="personLead">Талғат</div>
+                <div class="personSub">Мерекенің ең аяулы әкесі</div>
               </div>
-
               <div class="personCard">
-                <div class="personLine">
-                  <span class="personNameInline">Ақыл</span>
-                  <span class="personSep">—</span>
-                  <span class="personDescInline">Мерекенің ең мейірімді анасы</span>
-                </div>
+                <div class="personLead">Ақыл</div>
+                <div class="personSub">Мерекенің ең мейірімді анасы</div>
               </div>
             </div>
-
-            <div class="ornament" aria-hidden="true"></div>
           </div>
         </div>
       </section>
 
+      <!-- 4) EVENT -->
       <section id="event" class="section event">
         <div class="container">
-          <div class="eventTop reveal">
+          <div class="sectionHead reveal">
             <div class="kicker">Өтетін күні</div>
-            <h2 class="eventTitle">Мереке уақыты</h2>
+            <div class="ornLine" aria-hidden="true"></div>
           </div>
 
           <div class="eventGrid">
-            <div class="card reveal">
+            <div class="infoCard reveal">
               <div class="cardLabel">Күні</div>
               <div class="cardValue">11.07.2026</div>
             </div>
-            <div class="card reveal">
+
+            <div class="infoCard reveal">
               <div class="cardLabel">Басталу уақыты</div>
               <div class="cardValue">18:30</div>
             </div>
@@ -155,32 +162,190 @@
                 «Ismail» мейрамханасы
               </div>
 
-              <a class="btn btnPrimary btnWide" href="https://2gis.kz/almaty/geo/70000001092787441" target="_blank" rel="noreferrer">
+              <a
+                class="btn btnPrimary btnWide"
+                href="https://2gis.kz/almaty/geo/70000001092787441"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Картада ашу
               </a>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="countdownWrap reveal" aria-live="polite">
-            <div class="countdownLabel">Дер кезінде келіңіз</div>
-            <div id="countdown" class="countdown"></div>
+      <!-- 5) COUNTDOWN -->
+      <section id="timer" class="section timer">
+        <div class="container">
+          <div class="timerCard reveal">
+            <div class="timerLabel">Дер кезінде келіңіз</div>
+            <div class="timerNumbers" aria-live="polite">
+              <span class="timerPart">
+                <span id="cdDays" class="timerNum">00</span>
+                <span class="timerUnit">күн</span>
+              </span>
+              <span class="timerSep" aria-hidden="true">|</span>
+              <span class="timerPart">
+                <span id="cdHours" class="timerNum">00</span>
+                <span class="timerUnit">сағ</span>
+              </span>
+              <span class="timerSep" aria-hidden="true">|</span>
+              <span class="timerPart">
+                <span id="cdMinutes" class="timerNum">00</span>
+                <span class="timerUnit">минут</span>
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- 6) DRESS CODE -->
+      <section id="dress" class="section dress">
+        <div class="container">
+          <div class="dressGrid">
+            <div class="dressCard reveal">
+              <div class="kicker">Dress Code</div>
+              <h2 class="sectionTitle">Қара түсті киім</h2>
+              <p class="dressText">Қара түсті киім (ақ түстен аулақ болыңыз).</p>
+
+              <div class="dressChips" aria-hidden="true">
+                <div class="chip chipBlack">
+                  <span class="chipLabel">Қара</span>
+                </div>
+                <div class="chip chipDark">
+                  <span class="chipLabel">Күлгін-қоңыр</span>
+                </div>
+                <div class="chip chipGold">
+                  <span class="chipLabel">Алтын акцент</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dressIcons reveal" aria-hidden="true">
+              <div class="iconBox">
+                <!-- jacket icon -->
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 22V12l-6 2V7l8-3 8 3v7l-6-2v10" />
+                  <path d="M9 12l3 3 3-3" />
+                </svg>
+              </div>
+              <div class="iconBox">
+                <!-- tie icon -->
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 3h12l-2 6-4 2-4-2-2-6z" />
+                  <path d="M9 21l3-10 3 10" />
+                </svg>
+              </div>
+              <div class="iconBox">
+                <!-- shoes icon -->
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 17c2 0 4-1 6-3 2 2 4 3 6 3h5v4H3v-4z" />
+                  <path d="M9 14V8l6 2v4" />
+                </svg>
+              </div>
+              <div class="iconBox">
+                <!-- ring icon -->
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a7 7 0 0 0-7 7c0 3 2 5 7 13 5-8 7-10 7-13a7 7 0 0 0-7-7z" />
+                  <path d="M10 9h4" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7) RSVP -->
+      <section id="rsvp" class="section rsvp">
+        <div class="container">
+          <div class="rsvpLayout">
+            <div class="rsvpCopy reveal">
+              <div class="kicker">RSVP / Жауап</div>
+              <h2 class="sectionTitle">Жіберу</h2>
+              <p class="rsvpText">
+                Қатысуыңызды алдын ала біліп, отбасылық атмосфераны ұмытылмас етуге көмектесіңіз.
+              </p>
+
+              <div class="rsvpHint">
+                <span class="rsvpHintDot" aria-hidden="true"></span>
+                <span>Жауап жіберілгеннен кейін — “қабылданды” хабарламасы шығады.</span>
+              </div>
+            </div>
+
+            <form id="rsvpForm" class="rsvpForm reveal" autocomplete="on">
+              <div class="field">
+                <label for="rsvpName">Имя</label>
+                <input id="rsvpName" name="name" type="text" required placeholder="Мысалы: Алия" />
+              </div>
+
+              <div class="field">
+                <label for="rsvpPhone">Телефон</label>
+                <input
+                  id="rsvpPhone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  required
+                  placeholder="+7 (___) ___-__-__"
+                />
+              </div>
+
+              <div class="field">
+                <div class="labelRow">
+                  <span>Қатысасыз ба?</span>
+                </div>
+                <div class="radioRow" role="radiogroup" aria-label="Қатысады/қатыспайды">
+                  <label class="radioPill">
+                    <input type="radio" name="attend" value="yes" required />
+                    <span>Иә</span>
+                  </label>
+                  <label class="radioPill">
+                    <input type="radio" name="attend" value="no" required />
+                    <span>Жоқ</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="rsvpPeople">Қанша адам? (опционалды)</label>
+                <input id="rsvpPeople" name="peopleCount" type="number" min="1" max="10" placeholder="1" />
+              </div>
+
+              <button id="rsvpSubmit" class="btn btnPrimary btnWide" type="submit">
+                Жіберу
+              </button>
+
+              <p id="rsvpStatus" class="status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8) FINAL -->
       <section id="final" class="section final">
+        <div class="finalMedia" aria-hidden="true">
+          <video
+            id="finalVideo"
+            class="finalVideo"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            src="./assets/final.mp4"
+          ></video>
+          <div class="finalOverlay"></div>
+        </div>
+
         <div class="container finalInner">
           <div class="finalCopy reveal">
             <div class="finalTag">Uzatu</div>
             <h2 class="finalTitle">МЕРЕКЕНІҢ ҰЯДАН ҰШҚАН КҮНІНЕ</h2>
-            <p class="finalSub">
-              Отбасы жылуы мен естелікке толы сәтке қосылыңыз.
-            </p>
-
+            <p class="finalSub">Отбасы жылуы мен естелікке толы сәтке қосылыңыз.</p>
             <div class="finalActions">
-              <a class="btn btnPrimary" href="#hero" data-scroll>
-                Басты бетке оралу
-              </a>
+              <a class="btn btnGhost" href="#hero" data-scroll>Басты бетке оралу</a>
+              <a class="btn btnPrimary" href="#rsvp" data-scroll>RSVP жіберу</a>
             </div>
           </div>
         </div>
@@ -189,13 +354,8 @@
 
     <footer class="footer">
       <div class="container footerInner">
-        <div class="footerLeft">
-          <span class="footerDot" aria-hidden="true"></span>
-          <span>Жеңіл анимация, мобильдіге бейімделген.</span>
-        </div>
-        <div class="footerRight">
-          <span>© 2026</span>
-        </div>
+        <span>© 2026 Qyz Uzatu</span>
+        <span class="footerRight">Премиум минимализм • Mobile-first</span>
       </div>
     </footer>
 
