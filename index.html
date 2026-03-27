@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Qyz Uzatu</title>
+    <meta name="description" content="MEREKE’S QYZ UZATU — 11.07.2026, Алматы" />
+
+    <!-- Fonts (2 max) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <video
+        id="bgVideo"
+        class="bgVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        src="./assets/hero.mp4"
+      ></video>
+      <div class="bgOverlay"></div>
+      <div class="bgGlow"></div>
+    </div>
+
+    <header class="top">
+      <div class="container topInner">
+        <div class="brand">
+          <span class="brandMark" aria-hidden="true"></span>
+          <span class="brandText">QYZ UZATU</span>
+        </div>
+
+        <button id="musicToggle" class="musicToggle" type="button" aria-pressed="false">
+          Музыка: Off
+        </button>
+      </div>
+    </header>
+
+    <audio id="bgAudio" src="./assets/music.mp3" preload="none"></audio>
+
+    <main>
+      <section id="hero" class="section hero">
+        <div class="container heroInner">
+          <div class="heroCopy reveal">
+            <h1 class="heroTitle">MEREKE’S QYZ UZATU</h1>
+            <p class="heroSub">11.07.2026 г. Алматы</p>
+
+            <div class="heroActions">
+              <a class="btn btnPrimary" href="#story" data-scroll>
+                Төменге сырғытыңыз
+              </a>
+              <a class="btn btnGhost" href="#event" data-scroll>
+                Бағдарлама
+              </a>
+            </div>
+
+            <div class="scrollHint" aria-hidden="true">
+              <span class="scrollHintLine"></span>
+              <span class="scrollHintText">Scroll</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" class="section story">
+        <div class="container">
+          <div class="storyHead reveal">
+            <div class="kicker">История / өмір жолы</div>
+            <div class="ornLine" aria-hidden="true"></div>
+          </div>
+
+          <div class="storyStack" aria-label="История жизни (анимация пролистывания)">
+            <article class="storyItem">
+              <div class="storyDot" aria-hidden="true"></div>
+              <p class="para typewriter reveal" data-type>
+                Сіздер жаңа ғана біздің сүйікті Мерекеміздің өміріндегі 27 жылға көз жүгірттіңіздер.
+              </p>
+            </article>
+
+            <article class="storyItem">
+              <div class="storyDot" aria-hidden="true"></div>
+              <p class="para typewriter reveal" data-type>
+                Біреулер қызымыздың осы кезеңдерінің барлығына куә болды, енді біреулер кейінірек танысты, бірақ бәріңіз де Мерекемен бірге осы өмір жолында қатар жүрдіңіздер.
+              </p>
+            </article>
+
+            <article class="storyItem">
+              <div class="storyDot" aria-hidden="true"></div>
+              <p class="para typewriter reveal" data-type>
+                Ал қазір сіздер бұл жолдарды Мерекені жаңа өмірге — отбасылық өмірге шығарып салу сәтін бірге бөлісу үшін оқып отырсыздар.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="parents" class="section parents">
+        <div class="container">
+          <div class="parentsWrap reveal">
+            <div class="kicker">Той иелері</div>
+            <h2 class="parentsTitle">
+              Құрметпен және сүйіспеншілікпен, той иелері:
+            </h2>
+
+            <div class="parentsGrid">
+              <div class="personCard">
+                <div class="personLine">
+                  <span class="personNameInline">Талғат</span>
+                  <span class="personSep">—</span>
+                  <span class="personDescInline">Мерекенің ең аяулы әкесі</span>
+                </div>
+              </div>
+
+              <div class="personCard">
+                <div class="personLine">
+                  <span class="personNameInline">Ақыл</span>
+                  <span class="personSep">—</span>
+                  <span class="personDescInline">Мерекенің ең мейірімді анасы</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ornament" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="event" class="section event">
+        <div class="container">
+          <div class="eventTop reveal">
+            <div class="kicker">Өтетін күні</div>
+            <h2 class="eventTitle">Мереке уақыты</h2>
+          </div>
+
+          <div class="eventGrid">
+            <div class="card reveal">
+              <div class="cardLabel">Күні</div>
+              <div class="cardValue">11.07.2026</div>
+            </div>
+            <div class="card reveal">
+              <div class="cardLabel">Басталу уақыты</div>
+              <div class="cardValue">18:30</div>
+            </div>
+
+            <div class="placeCard reveal">
+              <div class="cardLabel">Өтетін орны</div>
+              <div class="placeText">
+                Алматы қаласы, Жүнісұров көшесі, №349<br />
+                «Ismail» мейрамханасы
+              </div>
+
+              <a class="btn btnPrimary btnWide" href="https://2gis.kz/almaty/geo/70000001092787441" target="_blank" rel="noreferrer">
+                Картада ашу
+              </a>
+            </div>
+          </div>
+
+          <div class="countdownWrap reveal" aria-live="polite">
+            <div class="countdownLabel">Дер кезінде келіңіз</div>
+            <div id="countdown" class="countdown"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="final" class="section final">
+        <div class="container finalInner">
+          <div class="finalCopy reveal">
+            <div class="finalTag">Uzatu</div>
+            <h2 class="finalTitle">МЕРЕКЕНІҢ ҰЯДАН ҰШҚАН КҮНІНЕ</h2>
+            <p class="finalSub">
+              Отбасы жылуы мен естелікке толы сәтке қосылыңыз.
+            </p>
+
+            <div class="finalActions">
+              <a class="btn btnPrimary" href="#hero" data-scroll>
+                Басты бетке оралу
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footerInner">
+        <div class="footerLeft">
+          <span class="footerDot" aria-hidden="true"></span>
+          <span>Жеңіл анимация, мобильдіге бейімделген.</span>
+        </div>
+        <div class="footerRight">
+          <span>© 2026</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./main.js" defer></script>
+  </body>
+</html>
+
