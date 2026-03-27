@@ -1,10 +1,11 @@
-/* Qyz Uzatu — digital invitation (premium card, dark mood, gold accents) */
+/* Qyz Uzatu — digital invitation (premium card, neutral base, gold accents) */
 
 :root {
-  --bg: #0a0a0c;
-  --bg2: #121014;
-  --text: rgba(244, 239, 228, 0.92);
-  --muted: rgba(244, 239, 228, 0.72);
+  /* Neutral base (site is not black; black is dress code theme) */
+  --bg: #f6f0e6;
+  --bg2: #fffaf1;
+  --text: rgba(24, 19, 18, 0.92);
+  --muted: rgba(24, 19, 18, 0.72);
   --gold: #c7a86a;
   --gold2: #e6d2a5;
 
@@ -16,11 +17,17 @@
 
   --line: rgba(199, 168, 106, 0.42);
   --line2: rgba(199, 168, 106, 0.22);
-  --shadow: 0 34px 120px rgba(0, 0, 0, 0.62);
+  --shadow: 0 34px 120px rgba(20, 18, 20, 0.18);
   --r-lg: 24px;
   --r-md: 18px;
   --r-sm: 14px;
   --container: 1080px;
+
+  /* Dress code (black theme) */
+  --dc-bg: #0b0b0d;
+  --dc-bg2: #141217;
+  --dc-text: rgba(244, 239, 228, 0.92);
+  --dc-muted: rgba(244, 239, 228, 0.72);
 }
 
 * {
@@ -38,10 +45,8 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(900px 560px at 18% 0%, rgba(199, 168, 106, 0.12), transparent 58%),
-    radial-gradient(780px 520px at 74% 12%, rgba(230, 210, 165, 0.07), transparent 62%),
-    radial-gradient(1200px 700px at 40% 120%, rgba(255, 255, 255, 0.05), transparent 60%),
+  background: radial-gradient(900px 520px at 18% 0%, rgba(199, 168, 106, 0.14), transparent 56%),
+    radial-gradient(820px 520px at 74% 10%, rgba(230, 210, 165, 0.10), transparent 62%),
     linear-gradient(180deg, var(--bg2), var(--bg));
   color: var(--text);
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -53,7 +58,7 @@ p,
 h1,
 h2 {
   word-break: normal;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
   hyphens: none;
 }
 
@@ -69,7 +74,7 @@ a {
 
 .section {
   position: relative;
-  padding: 56px 0;
+  padding: 72px 0;
 }
 
 /* Fixed background */
@@ -86,8 +91,8 @@ a {
   width: 120%;
   height: 120%;
   object-fit: cover;
-  opacity: 0.22;
-  filter: saturate(0.92) contrast(1.06) brightness(0.72);
+  opacity: 0.12;
+  filter: saturate(0.92) contrast(1.02) brightness(1.06);
   transform: translate3d(0, calc(var(--scroll-y, 0) * -0.03px), 0) scale(1.04);
   will-change: transform;
 }
@@ -95,7 +100,7 @@ a {
 .bgOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 12, 0.58), rgba(10, 10, 12, 0.92));
+  background: linear-gradient(180deg, rgba(255, 250, 241, 0.62), rgba(246, 240, 230, 0.88));
 }
 
 .bgGrain {
@@ -103,8 +108,8 @@ a {
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
   background-size: 260px 260px;
-  mix-blend-mode: overlay;
-  opacity: 0.35;
+  mix-blend-mode: multiply;
+  opacity: 0.12;
 }
 
 /* Accessibility */
@@ -133,8 +138,8 @@ a {
   right: 0;
   z-index: 30;
   padding: 14px 0;
-  background: rgba(10, 10, 12, 0.46);
-  border-bottom: 1px solid rgba(199, 168, 106, 0.14);
+  background: rgba(255, 250, 241, 0.68);
+  border-bottom: 1px solid rgba(199, 168, 106, 0.18);
   backdrop-filter: blur(10px);
 }
 
@@ -163,7 +168,7 @@ a {
   font-weight: 600;
   letter-spacing: 0.14em;
   font-size: 12px;
-  color: rgba(244, 239, 228, 0.78);
+  color: rgba(20, 18, 20, 0.72);
 }
 
 .topRight {
@@ -179,13 +184,14 @@ a {
   padding: 10px 12px;
   border-radius: 999px;
   border: 1px solid rgba(199, 168, 106, 0.28);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(20, 18, 20, 0.82);
 }
 
 .musicToggle {
   border: 1px solid rgba(199, 168, 106, 0.28);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(244, 239, 228, 0.92);
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(20, 18, 20, 0.82);
   padding: 10px 14px;
   border-radius: 999px;
   cursor: pointer;
@@ -201,7 +207,7 @@ a {
 /* Hero */
 .hero {
   padding-top: 94px;
-  padding-bottom: 64px;
+  padding-bottom: 44px;
   min-height: 86vh;
   display: flex;
   align-items: center;
@@ -223,7 +229,7 @@ a {
   background:
     radial-gradient(900px 520px at 20% 0%, rgba(255, 255, 255, 0.58), transparent 55%),
     linear-gradient(180deg, var(--paper2), var(--paper));
-  box-shadow: var(--shadow);
+  box-shadow: 0 34px 120px rgba(20, 18, 20, 0.22);
   border: 1px solid rgba(199, 168, 106, 0.22);
   overflow: hidden;
 }
@@ -304,7 +310,7 @@ a {
 
 .inviteLead {
   margin: 18px auto 0;
-  max-width: 44ch;
+  max-width: 46ch;
   color: rgba(20, 18, 20, 0.78);
   line-height: 1.7;
   font-weight: 600;
@@ -350,8 +356,8 @@ a {
   position: absolute;
   width: 190px;
   height: 190px;
-  opacity: 0.95;
-  filter: saturate(0.98);
+  opacity: 1;
+  filter: saturate(0.98) drop-shadow(0 18px 20px rgba(20, 18, 20, 0.18));
 }
 
 .floral--tl {
@@ -410,9 +416,9 @@ a {
 }
 
 .btnGhost {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(199, 168, 106, 0.34);
-  color: rgba(244, 239, 228, 0.92);
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(199, 168, 106, 0.30);
+  color: rgba(20, 18, 20, 0.82);
 }
 
 .btnGhost:hover {
@@ -420,18 +426,8 @@ a {
 }
 
 /* Buttons on the paper invitation */
-.inviteCard .btnPrimary {
-  color: #121014;
-}
-
-.inviteCard .btnGhost {
-  background: rgba(20, 18, 20, 0.06);
-  border-color: rgba(179, 141, 72, 0.28);
-  color: rgba(20, 18, 20, 0.88);
-}
-
 .inviteCard .btnGhost:hover {
-  background: rgba(20, 18, 20, 0.08);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 /* Reveal animations */
@@ -463,7 +459,7 @@ a {
   letter-spacing: 0.14em;
   font-size: 12px;
   text-transform: uppercase;
-  color: rgba(244, 239, 228, 0.66);
+  color: rgba(20, 18, 20, 0.62);
 }
 
 .ornLine {
@@ -488,7 +484,7 @@ a {
 
 /* Story timeline */
 .story {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 70%);
+  background: transparent;
 }
 
 .timeline {
@@ -528,7 +524,7 @@ a {
   font-family: "Playfair Display", serif;
   font-size: clamp(18px, 3.2vw, 26px);
   line-height: 1.55;
-  color: rgba(244, 239, 228, 0.92);
+  color: rgba(20, 18, 20, 0.88);
 }
 
 /* Typewriter chars */
@@ -547,7 +543,7 @@ a {
 
 /* Parents */
 .parentsCard {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.035));
+  background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(199, 168, 106, 0.18);
   border-radius: var(--r-lg);
   padding: 22px 18px;
@@ -562,7 +558,7 @@ a {
 }
 
 .personCard {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(199, 168, 106, 0.16);
   border-radius: var(--r-md);
   padding: 16px 14px;
@@ -577,14 +573,14 @@ a {
 
 .personSub {
   margin-top: 8px;
-  color: rgba(244, 239, 228, 0.74);
+  color: rgba(20, 18, 20, 0.70);
   font-weight: 600;
   line-height: 1.4;
 }
 
 /* Event */
 .event {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 70%);
+  background: transparent;
 }
 
 .eventGrid {
@@ -595,7 +591,7 @@ a {
 
 .infoCard,
 .placeCard {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(199, 168, 106, 0.16);
   border-radius: var(--r-lg);
   padding: 18px 16px;
@@ -606,7 +602,7 @@ a {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 12px;
-  color: rgba(244, 239, 228, 0.64);
+  color: rgba(20, 18, 20, 0.60);
 }
 
 .cardValue {
@@ -623,21 +619,21 @@ a {
 
 .placeText {
   margin-top: 10px;
-  color: rgba(244, 239, 228, 0.9);
+  color: rgba(20, 18, 20, 0.86);
   line-height: 1.6;
   font-size: 16px;
 }
 
 /* Timer */
 .timerCard {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-  border: 1px solid rgba(199, 168, 106, 0.18);
+  background: transparent;
+  border: 0;
   border-radius: var(--r-lg);
-  padding: 18px 16px;
+  padding: 0;
 }
 
 .timerLabel {
-  color: rgba(244, 239, 228, 0.66);
+  color: rgba(20, 18, 20, 0.55);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -647,7 +643,7 @@ a {
 .timerNumbers {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
   margin-top: 10px;
   flex-wrap: wrap;
@@ -662,13 +658,13 @@ a {
 .timerNum {
   font-family: "Playfair Display", serif;
   font-size: 38px;
-  color: var(--gold2);
+  color: rgba(20, 18, 20, 0.92);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
 .timerUnit {
-  color: rgba(244, 239, 228, 0.74);
+  color: rgba(20, 18, 20, 0.62);
   font-weight: 700;
   letter-spacing: 0.06em;
 }
@@ -687,77 +683,68 @@ a {
 }
 
 .dressCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(199, 168, 106, 0.18);
+  background: linear-gradient(180deg, var(--dc-bg2), var(--dc-bg));
+  border: 1px solid rgba(199, 168, 106, 0.22);
   border-radius: var(--r-lg);
   padding: 18px 16px;
   box-shadow: var(--shadow);
+  color: var(--dc-text);
 }
 
 .dressText {
   margin: 0;
-  color: rgba(244, 239, 228, 0.82);
+  color: var(--dc-muted);
   font-weight: 600;
   line-height: 1.6;
 }
 
-.dressChips {
-  margin-top: 18px;
-  display: flex;
+.dressTiles {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
-  flex-wrap: wrap;
 }
 
-.chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 999px;
+.dressTile {
+  border-radius: 16px;
+  padding: 12px 12px;
   border: 1px solid rgba(199, 168, 106, 0.18);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  background: rgba(255, 255, 255, 0.04);
 }
 
-.chipLabel {
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  font-size: 13px;
+.dressTileTitle {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(230, 210, 165, 0.92);
 }
 
-.chipBlack {
-  background: #050506;
-  color: rgba(244, 239, 228, 0.9);
+.dressTileText {
+  margin-top: 8px;
+  color: rgba(244, 239, 228, 0.78);
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 14px;
 }
 
-.chipDark {
-  background: #151019;
-  color: rgba(244, 239, 228, 0.9);
+.dressSwatches {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
 }
 
-.chipGold {
-  background: rgba(199, 168, 106, 0.16);
-  color: rgba(230, 210, 165, 0.95);
-  border-color: rgba(199, 168, 106, 0.32);
+.swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(199, 168, 106, 0.25);
 }
 
-.dressIcons {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(199, 168, 106, 0.14);
-  border-radius: var(--r-lg);
-  padding: 16px 14px;
-}
-
-.iconBox {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(199, 168, 106, 0.16);
-  border-radius: var(--r-md);
-  padding: 14px 14px;
-  margin-bottom: 12px;
-  color: rgba(230, 210, 165, 0.95);
-}
-
-.iconBox svg {
-  display: block;
-}
+.swatch--black { background: #0b0b0d; }
+.swatch--charcoal { background: #1a171d; }
+.swatch--espresso { background: #221a17; }
+.swatch--gold { background: rgba(199, 168, 106, 0.9); }
 
 /* RSVP */
 .rsvpLayout {
@@ -769,7 +756,7 @@ a {
 
 .rsvpCopy {
   padding: 18px 16px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(199, 168, 106, 0.16);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow);
@@ -777,7 +764,7 @@ a {
 
 .rsvpText {
   margin: 0;
-  color: rgba(244, 239, 228, 0.82);
+  color: rgba(20, 18, 20, 0.78);
   line-height: 1.65;
   font-weight: 600;
 }
@@ -787,7 +774,7 @@ a {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  color: rgba(244, 239, 228, 0.7);
+  color: rgba(20, 18, 20, 0.66);
   font-weight: 600;
 }
 
@@ -802,7 +789,7 @@ a {
 
 .rsvpForm {
   padding: 18px 16px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(199, 168, 106, 0.14);
   border-radius: var(--r-lg);
 }
@@ -815,7 +802,7 @@ a {
 
 .field label {
   font-weight: 700;
-  color: rgba(244, 239, 228, 0.8);
+  color: rgba(20, 18, 20, 0.78);
   letter-spacing: 0.02em;
 }
 
@@ -833,14 +820,14 @@ input[type="number"] {
   border-radius: 14px;
   padding: 12px 12px;
   border: 1px solid rgba(199, 168, 106, 0.2);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(244, 239, 228, 0.95);
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(20, 18, 20, 0.92);
   outline: none;
   font-weight: 600;
 }
 
 input::placeholder {
-  color: rgba(244, 239, 228, 0.45);
+  color: rgba(20, 18, 20, 0.42);
   font-weight: 600;
 }
 
@@ -862,7 +849,7 @@ input:focus {
   padding: 12px 12px;
   border-radius: 999px;
   border: 1px solid rgba(199, 168, 106, 0.18);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.72);
   cursor: pointer;
   user-select: none;
 }
@@ -873,7 +860,7 @@ input:focus {
 
 .status {
   margin: 14px 0 0;
-  color: rgba(230, 210, 165, 0.95);
+  color: rgba(20, 18, 20, 0.78);
   font-weight: 700;
   line-height: 1.6;
   min-height: 22px;
@@ -901,14 +888,14 @@ input:focus {
   width: 120%;
   height: 120%;
   object-fit: cover;
-  opacity: 0.22;
-  filter: contrast(1.06) brightness(0.84);
+  opacity: 0.18;
+  filter: contrast(1.04) brightness(1.06);
 }
 
 .finalOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11, 11, 13, 0.55), rgba(11, 11, 13, 0.92));
+  background: linear-gradient(180deg, rgba(255, 250, 241, 0.55), rgba(246, 240, 230, 0.92));
 }
 
 .finalInner {
@@ -919,8 +906,8 @@ input:focus {
   max-width: 860px;
   padding: 18px 16px;
   border-radius: var(--r-lg);
-  border: 1px solid rgba(199, 168, 106, 0.18);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(199, 168, 106, 0.20);
+  background: rgba(255, 255, 255, 0.66);
   box-shadow: var(--shadow);
 }
 
@@ -929,7 +916,7 @@ input:focus {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-size: 12px;
-  color: rgba(244, 239, 228, 0.66);
+  color: rgba(20, 18, 20, 0.62);
 }
 
 .finalTitle {
@@ -941,7 +928,7 @@ input:focus {
 
 .finalSub {
   margin: 0 0 18px;
-  color: rgba(244, 239, 228, 0.78);
+  color: rgba(20, 18, 20, 0.74);
   line-height: 1.7;
   font-weight: 600;
   font-size: 16px;
@@ -956,8 +943,8 @@ input:focus {
 /* Footer */
 .footer {
   padding: 26px 0 38px;
-  border-top: 1px solid rgba(199, 168, 106, 0.12);
-  background: rgba(11, 11, 13, 0.4);
+  border-top: 1px solid rgba(199, 168, 106, 0.14);
+  background: rgba(255, 250, 241, 0.66);
 }
 
 .footerInner {
@@ -966,12 +953,12 @@ input:focus {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  color: rgba(244, 239, 228, 0.62);
+  color: rgba(20, 18, 20, 0.62);
   font-weight: 600;
 }
 
 .footerRight {
-  color: rgba(244, 239, 228, 0.54);
+  color: rgba(20, 18, 20, 0.54);
 }
 
 /* Desktop improvements */
@@ -1023,6 +1010,37 @@ input:focus {
 
   .timelineDot {
     left: 13px;
+  }
+}
+
+/* Mobile-first readability (fix ugly breaks + add air) */
+@media (max-width: 480px) {
+  .container {
+    width: min(var(--container), calc(100% - 28px));
+  }
+
+  .section {
+    padding: 66px 0;
+  }
+
+  .inviteInner {
+    padding: 30px 16px 22px;
+  }
+
+  .inviteLead {
+    max-width: 36ch;
+  }
+
+  .storyPara {
+    line-height: 1.62;
+  }
+
+  .timerNumbers {
+    gap: 10px;
+  }
+
+  .dressTiles {
+    grid-template-columns: 1fr;
   }
 }
 
